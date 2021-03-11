@@ -37,6 +37,7 @@ class CoursesRow extends StatelessWidget {
         ),
         SizedBox(
           height: 100.0,
+          width: 20.0,
         ),
         Buttons(buttonsText: 'Start Now', ),
       ],
