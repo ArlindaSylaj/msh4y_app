@@ -3,6 +3,8 @@ import 'package:msh4y/components/coursesRow.dart';
 import 'package:msh4y/components/bottomContainer.dart';
 import 'package:msh4y/constants.dart';
 import 'package:msh4y/screens/mentors.dart';
+import 'package:msh4y/screens/home_page.dart';
+import 'package:msh4y/screens/about_us.dart';
 
 class Courses extends StatefulWidget{
   static const String id = 'courses';
@@ -12,10 +14,49 @@ class Courses extends StatefulWidget{
 }
 
 class _CoursesState extends State<Courses>{
+  String selectedScreen ;
+
+  DropdownButton<String> androidDropdown(){
+    List<DropdownMenuItem<String>> dropdownItems = [];
+
+    for(String routes in nameOfRoute){
+      var newItem = DropdownMenuItem(
+        child: Text(routes),
+        value: routes,
+      );
+      dropdownItems.add(newItem);
+    }
+
+    return DropdownButton<String>(
+      value: selectedScreen,
+      items:  dropdownItems,
+      icon: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(Icons.list,color: Colors.white,),
+      ),
+      onChanged: (value){
+        setState(() {
+          selectedScreen = value;
+          switch(value){
+            case 'HomePage' : Navigator.pushNamed(context, HomePage.id);
+            break;
+            case 'AboutUs': Navigator.pushNamed(context, AboutUs.id);
+            break;
+            case 'Courses' : Navigator.pushNamed(context, Courses.id);
+            break;
+            case 'Mentors' : Navigator.pushNamed(context, Mentors.id);
+            break;
+          };
+        },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: buildAppBar(backgroundImage: 'courses-image.png',name: 'Courses'),
+      appBar: buildAppBar(backgroundImage: 'unnamed.jpg',name: 'Courses'),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -41,14 +82,15 @@ class _CoursesState extends State<Courses>{
         fit: BoxFit.cover,
       ),
       backgroundColor: Colors.transparent,
-      title: Text('$name',style: kHeadingsStyle,),
       actions: <Widget>[
-        Image.asset('images/logo.png'),
-    IconButton(icon: Icon(Icons.navigate_next),
-    onPressed: () {
-    Navigator.pushNamed(context, Mentors.id);
-    },
-    ),
+        Padding(
+          padding: const EdgeInsets.only(right:100.0),
+          child: Row(children: <Widget>[
+            Image.asset('images/logo.png',width: 100),
+            Text('$name',style: TextStyle(fontSize: 14.0,color: Colors.black,fontStyle: FontStyle.italic)),
+          ],),
+        ),
+        androidDropdown(),
       ],
     );
   }
