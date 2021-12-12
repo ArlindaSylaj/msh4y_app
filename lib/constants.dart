@@ -38,7 +38,7 @@ const kHomePageParagraphs = TextStyle(
     fontSize: 13.0
 );
 const kTextFieldDecoration = InputDecoration(
-  hintText: '',
+  hintText: 'hello',
   contentPadding:
   EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
