@@ -33,6 +33,11 @@ const kHomePageHeadings = TextStyle(
   fontSize: 20.0,
   fontWeight: FontWeight.bold,
 );
+const kHomeHeadings = TextStyle(
+  color: Colors.white ,
+  fontSize: 20.0,
+  fontWeight: FontWeight.bold,
+);
 const kHomePageParagraphs = TextStyle(
   color: Colors.white,
     fontSize: 13.0
